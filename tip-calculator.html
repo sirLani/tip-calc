@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <title>Tip-Calculator</title>
+    <style type="text/css">
+        html {
+            box-sizing: border-box;
+        }
+
+
+
+        #title {
+            background-color: #803e3f;
+            color: white;
+            text-align: center;
+            width: 100%;
+            margin: 0, auto;
+            height: 200px;
+            border-radius: 20px;
+        }
+
+        h1 {
+            font-size: 50px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding-top: 50px;
+        }
+
+        #form {
+            margin-top: 25px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .btn {
+            background: #803e3f;
+            font-size: 25px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #4c2827;
+            border-bottom-color: #111;
+            cursor: pointer;
+        }
+
+        .btn:active {
+            position: relative;
+            top: 1px;
+        }
+
+        #tipamount {
+            text-align: center;
+            content: "Total-tip";
+            font-size: 30px;
+            font-weight: bold;
+
+
+        }
+
+        .put {
+            width: 50%;
+        }
+
+        .lastDiv {
+            text-align: center;
+        }
+
+        #each {
+            content: "each";
+            font-size: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold
+        }
+
+        #naira {
+            font-size: 25px;
+
+        }
+
+        #tip {
+            font-size: 38px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container" id="title">
+            <h1>Tip Calaculator</h1>
+        </div>
+
+
+
+        <div class="jumbotron jumbotron-fluid" style="border-radius: 15px; margin-top:15px;">
+
+            <div class="lastDiv">
+
+                <div id="tipamount">Total-tip</div> <br>
+                <div id="totaltip">
+                    <sup id="naira">₦</sup><span id="tip"></span> <br>
+                    <small id="each">each</small>
+                </div>
+
+            </div>
+
+            <form id="form">
+                <p>How much is your bill?</p>
+                <div class="input-group mb-3" style="width: 59%; margin: 0 auto; padding: 4px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-size: 20px">₦</span>
+                    </div>
+                    <input type="text" id="bill" class="form-control put" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" style="height:50px; width:50%; font-size: 22px;"
+                        onkeyup="sum()">
+                </div> <br>
+
+
+                <p>How was your service?</p>
+                <select id="quality">
+                    <option disabled selected value="0"> -- Choose an Option -- </option>
+                    <option value="0.3"> 30&#37; &#45; Outstanding </option>
+                    <option value="0.2"> 20&#37; &#45; Good </option>
+                    <option value="0.15"> 15&#37; &#45; Ok </option>
+                    <option value="0.1"> 10&#37; &#45; Bad</option>
+                    <option value="0.05"> 5&#37; &#45; Terrible </option>
+                </select>
+
+                <br><br>
+
+                <p>How many people are sharing the bill..?</p>
+                <div class="input-group" style="    width: 59%; margin: 0 auto; padding: 4px;">
+                    <input id="people" type="text" aria-label="First name" class="form-control "
+                        style="height: 50px; width: 50%; font-size: 22px;" onkeyup="sum()">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="font-size: 20px">People</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        document.getElementById("totaltip").style.display = "none";
+        document.getElementById("tipamount").style.display = "none";
+
+        function sum() {
+
+            var service = document.getElementById("quality").value;
+            var bill = document.getElementById("bill").value;
+            var people = document.getElementById("people").value;
+
+            if (people === "" || people <= 1) {
+                people = 1;
+                document.getElementById("each").style.display = "none";
+            } else {
+                document.getElementById("each").style.display = "block";
+            }
+
+            var total = (bill * service) / people;
+            total = Math.round(total * 100) / 100;
+
+            total = total.toFixed(2);
+
+            document.getElementById("tipamount").style.display = "block";
+            document.getElementById("totaltip").style.display = "block";
+
+            document.getElementById("tip").innerHTML = total;
+
+        };
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
